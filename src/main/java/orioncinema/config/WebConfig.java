@@ -52,9 +52,9 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         factoryBean.setPackagesToScan("orioncinema");
 
         Properties props = new Properties();
-        props.put("hibernate.show_sql", "true");
-        props.put("hibernate.hbm2ddl.auto", "update");
-        props.put("dialect", "hibernate.dialect.MySQLDialect");
+        props.put(AvailableSettings.SHOW_SQL, "true");
+        props.put(AvailableSettings.HBM2DDL_AUTO, "update");
+        props.put(AvailableSettings.DIALECT, "hibernate.dialect.MySQLDialect");
         props.put(AvailableSettings.CURRENT_SESSION_CONTEXT_CLASS, "org.springframework.orm.hibernate5.SpringSessionContext");
 
         factoryBean.setHibernateProperties(props);
