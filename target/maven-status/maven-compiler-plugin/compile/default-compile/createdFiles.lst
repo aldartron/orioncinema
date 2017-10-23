@@ -1,0 +1,4 @@
+orioncinema\controllers\CinemaController.class
+orioncinema\config\WebConfig.class
+orioncinema\config\RootConfig.class
+orioncinema\config\OrionWebInitializer.class

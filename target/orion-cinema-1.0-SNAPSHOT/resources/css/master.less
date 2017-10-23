@@ -1,0 +1,275 @@
+@dark: #0A090C;
+@accent: #2C363F;
+@main: #FF3366;
+@white: #EEF0F2;
+@gray: #565264;
+
+@import url('https://fonts.googleapis.com/css?family=PT+Sans|Poiret+One');
+
+// GLOBAL
+
+body {
+  padding: 0px;
+  padding-top: 50px;
+  margin: 0px;
+  background: url("../images/bg-texture.png") fixed;
+  font-family: 'PT Sans', sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+sup {
+  vertical-align: baseline; position: relative; top: -0.4em;
+}
+
+sub {
+  vertical-align: baseline; position: relative; bottom: -0.4em;
+}
+
+// NAVBARS
+nav {
+  width: 100%;
+  padding: 0;
+  z-index: 10;
+
+  &.nav-fixed {
+    display: flex;
+    flex-wrap: wrap-reverse;
+    text-align: center;
+    justify-content: space-between;
+    padding-left: 2%;
+    position: fixed;
+    top:0;
+    background-color: @dark;
+    a {
+      padding: 0 16px;
+      line-height: 50px;
+      height: 50px;
+      color: @main + #444;
+      &:hover {
+        color: @main + #303030;
+        transition-duration: 0.5s;
+      }
+    }
+  }
+
+  // Daysbar
+  &.nav-sticky {
+    box-shadow: 2px 2px 7px @dark;
+    line-height: 36px;
+    background-color: @main;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    a {
+      color: @white;
+      &:hover {
+        color: #fff;
+        transition-duration: 0.5s;
+      }
+    }
+    // Days
+    & div {
+      padding: 0 12px;
+      transform: skewX(15deg);
+      & div.content {
+        transform: skewX(-15deg);
+      }
+      &.active {
+        background-color: @accent;
+      }
+    }
+  }
+}
+
+div.navigation {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+// Social
+div.social {
+  position: relative;
+  width: 320px;
+  height: 36px;
+  margin-top: 7px;
+  margin-bottom: 7px;
+  a {
+    & div {
+      background-size: cover;
+      height: 32px;
+      width: 32px;
+      position: relative;
+    }
+    &#vk div {
+      background-image: url("../images/vk-logo.png");
+      //&:hover {background-image: url("../images/vk-logo-hover.png");}
+    }
+    &#fb div {
+      background-image: url("../images/facebook-logo.png");
+      //&:hover {background-image: url("../images/facebook-logo-hover.png")}
+    }
+    &#ok div {
+      background-image: url("../images/ok-logo.png");
+      //&:hover {background-image: url("../images/ok-logo-hover.png")}
+    }
+    &#tw div {
+      background-image: url("../images/twitter-logo.png");
+      //&:hover {background-image: url("../images/twitter-logo-hover.png")}
+    }
+    &#ig div {
+      background-image: url("../images/instagram-logo.png");
+      //&:hover {background-image: url("../images/instagram-logo-hover.png")}
+    }
+    display: inline-block;
+    margin: 0 4px;
+    padding: 0;
+  }
+
+}
+
+nav.sticky1 {
+  position: fixed;
+  top: 50px;
+  width: 100%;
+}
+nav.sticky2 {
+  position: fixed;
+  top: 100px;
+  width: 100%;
+}
+nav.sticky3 {
+  position: fixed;
+  top: 150px;
+  width: 100%;
+}
+nav.sticky4 {
+  position: fixed;
+  top: 200px;
+  width: 100%;
+}
+
+// FACE
+div.face {
+  background: @dark url(../images/Neon-City-Red.jpg) fixed top no-repeat;
+  background-size: cover;
+  padding: 8px 0 4px 0;
+  text-align: center;
+  color: @white;
+  h1 {
+    font-family: 'Poiret One', cursive;
+    text-wrap: none;
+    font-size: 80px;
+    margin: 12px;
+  }
+  hr {    width: 33%;  max-width: 640px;  }
+  h3 {    font-size: 24px;  }
+  div.face-brand {
+    padding-top: 8px;
+    padding-bottom: 2px;
+    div.container {
+      padding: 32px;
+      max-width: 560px;
+      border: 8px double @white;
+    }
+  }
+  div.face-info {
+    &:nth-child(3) {
+      padding-right: 3%;
+      text-align: right;
+    }
+    &:nth-child(1) {
+      padding-left: 3%;
+      text-align: left;
+    }
+    font-family: 'Poiret One', cursive;
+  }
+}
+
+// BOARD
+div.board {
+  padding: 0;
+  margin: 10px 0;
+
+  div.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    div.placard {
+      position: relative;
+      height: 300px;
+      box-shadow: 3px 3px 7px @dark;
+      background-color: @accent;
+      background: url("../images/movies/turbo-kid.jpg");
+      background-position: center;
+      background-size: cover;
+      margin: 10px;
+      min-width: 320px;
+      flex-grow: 1;
+      flex-shrink: 1;
+      flex-basis: 20%;
+      //max-width: 640px;
+      a {
+        position: absolute;
+        top: 0; bottom: 0; left: 0; right: 0;
+        transition: 0.36s;
+        &:hover {
+          background-color: rgba(10, 9, 12, 0.27);
+          transition: 0.36s;
+        }
+      }
+
+      // PLACARD CAPTION
+      div.caption {
+        position: absolute;
+        bottom: 0;
+        padding: 8px 16px;
+        background-color: rgba(10, 9, 12, 0.64);
+        width: 100%;
+        small {
+          color: @main + #303030;
+          font-size: 16px;
+        }
+        h4 {
+          color: @white;
+          margin: 10px 0 8px 0;
+        }
+      }
+    }
+
+    div.high-prior {
+      max-width: none;
+      flex-basis: 42%;
+      background: url("../images/movies/bladerunner_2049.jpg");
+      background-position: center;
+      background-size: cover;
+      flex-grow: 1;
+    }
+
+  }
+}
+
+
+// FOOTER
+footer {
+  div.row {    width: 100%;  }
+  font-family: 'Poiret One', cursive;
+  div.col {    margin: 0 !important;  };
+  background-color: @dark;
+  color: @white;
+  padding: 12px;
+}
+
+@media (max-width: 580px) {
+  nav.nav-fixed {
+    position: relative;
+  }
+  body {
+    padding: 0;
+  }
+}
