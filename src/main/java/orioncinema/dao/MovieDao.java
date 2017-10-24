@@ -1,6 +1,6 @@
 package orioncinema.dao;
 
-import orioncinema.entitiy.Movie;
+import orioncinema.entity.Movie;
 
 import java.util.List;
 

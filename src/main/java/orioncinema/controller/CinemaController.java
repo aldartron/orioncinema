@@ -20,7 +20,7 @@ public class CinemaController {
     }
 
     @Autowired
-    public void MovieService(MovieService movieService) {
+    public void setMovieService(MovieService movieService) {
         this.movieService = movieService;
     }
 }

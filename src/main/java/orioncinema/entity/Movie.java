@@ -1,4 +1,4 @@
-package orioncinema.entitiy;
+package orioncinema.entity;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -8,7 +8,7 @@ import java.sql.Date;
 public class Movie {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column private long id;
     @Column private String title;
     @Column private String annotation;

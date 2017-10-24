@@ -3,8 +3,8 @@ package orioncinema.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-import orioncinema.dao.MovieDaoImpl;
-import orioncinema.entitiy.Movie;
+import orioncinema.dao.MovieDao;
+import orioncinema.entity.Movie;
 
 import java.util.List;
 
@@ -12,10 +12,10 @@ import java.util.List;
 @Service
 public class MovieService {
 
-    private MovieDaoImpl movieDao;
+    private MovieDao movieDao;
 
     @Autowired
-    public void setMovieDao(MovieDaoImpl movieDao) {
+    public void setMovieDao(MovieDao movieDao) {
         this.movieDao = movieDao;
     }
 

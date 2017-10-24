@@ -87,10 +87,10 @@
 
         <c:forEach var="movie" items="${movies}">
 
-            <div class="placard">
+            <div class="placard <c:if test="${movie.high}">high-prior</c:if>" style="background-image: url('<c:url value="/placards/${movie.placardName}.jpg"/>')">
                 <a href="#">
                     <div class="caption">
-                        <small>12 октября - 12 ноября</small>
+                        <small>${movie.startDate} - ${movie.endDate}</small>
                         <h4>${movie.title}</h4>
                     </div>
                 </a>
@@ -101,11 +101,6 @@
 
     </div>
   </div>
-  <br><br><br><br><br><br><br><br><br><br>
-  <br><br><br><br><br><br><br><br><br><br>
-  <br><br><br><br><br><br><br><br><br><br>
-  <br><br><br><br><br><br><br><br><br><br>
-
 </section>
 <footer>
   <div class="row justify-content-around">
