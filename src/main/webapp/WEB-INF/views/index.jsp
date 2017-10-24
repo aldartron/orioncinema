@@ -48,7 +48,7 @@
       <div class="container">
         <h1>О Р И О Н</h1>
         <hr>
-        <h3>КИНОТЕАТР ИЗ БУДУЩЕГО</h3>
+        <h3>КИНОТЕАТР БУДУЩЕГО</h3>
       </div>
     </div>
     <div class="face-info">
@@ -57,30 +57,27 @@
     </div>
   </div>
   <nav class="nav-sticky" id="sticky">
-    <div class="active">
-      <div class="content">
-        <a class="nav-link" href="#">Сегодня</a>
+      <div class="<c:if test="${currentDay.equals(days.get(0).getDateLine())}">active</c:if>">
+          <div class="content">
+              <a class="nav-link" href="<c:url value="/"/>">Сегодня</a>
+          </div>
       </div>
-    </div>
-    <div>
-      <div class="content">
-        <a class="nav-link" href="#">Завтра</a>
+      <div class="<c:if test="${currentDay.equals(days.get(1).getDateLine())}">active</c:if>">
+          <div class="content">
+              <a class="nav-link" href="?day=${days.get(1).getDateLine()}">Завтра</a>
+          </div>
       </div>
-    </div>
-    <div>
-      <div class="content">
-        <a class="nav-link" href="#">Среда <sup>30</sup></a></div>
-    </div>
-    <div>
-      <div class="content">
-        <a class="nav-link" href="#">Четверг <sup>31</sup></a>
-      </div>
-    </div>
-    <div>
-      <div class="content">
-        <a class="nav-link" href="#">Пятница <sup>1</sup></a>
-      </div>
-    </div>
+
+      <c:forEach var="i" begin="2" end="${days.size()-1}">
+
+          <div class="<c:if test="${currentDay.equals(days.get(i).getDateLine())}">active</c:if>">
+              <div class="content">
+                  <a class="nav-link" href="?day=${days.get(i).getDateLine()}">${days.get(i).getDayOfWeek()} <sup>${days.get(i).getDay()}</sup></a>
+              </div>
+          </div>
+
+      </c:forEach>
+
   </nav>
   <div class="board row justify-content-around" id="board">
     <div class="flex-container col-md-10 col-lg-10 col-sm-12 col-xs-12">
@@ -90,14 +87,13 @@
             <div class="placard <c:if test="${movie.high}">high-prior</c:if>" style="background-image: url('<c:url value="/placards/${movie.placardName}.jpg"/>')">
                 <a href="#">
                     <div class="caption">
-                        <small>${movie.startDate} - ${movie.endDate}</small>
+                        <small>${movie.getNiceStartDate()} - ${movie.getNiceEndDate()}</small>
                         <h4>${movie.title}</h4>
                     </div>
                 </a>
             </div>
 
         </c:forEach>
-
 
     </div>
   </div>

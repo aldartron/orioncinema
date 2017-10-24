@@ -1,5 +1,7 @@
 package orioncinema.entity;
 
+import orioncinema.util.DateHelper;
+
 import javax.persistence.*;
 import java.sql.Date;
 
@@ -27,6 +29,14 @@ public class Movie {
     @Column(name = "is_high") private boolean isHigh;
 
     protected Movie() {}
+
+    public String getNiceStartDate() {
+        return DateHelper.getNiceDate(startDate);
+    }
+
+    public String getNiceEndDate() {
+        return DateHelper.getNiceDate(endDate);
+    }
 
     @Override
     public String toString() {
