@@ -218,7 +218,7 @@ div.board {
       flex-grow: 1;
       flex-shrink: 1;
       flex-basis: 20%;
-      //max-width: 640px;
+      max-width: 800px !important;
       a {
         position: absolute;
         top: 0; bottom: 0; left: 0; right: 0;
@@ -286,6 +286,7 @@ section.movie {
 }
 
 div.booklet {
+  box-shadow: @soft_shadow;
   margin: 40px;
   position: relative;
   color: @white;
@@ -348,6 +349,8 @@ button {
   }
 }
 
+@soft_shadow: 3px 3px 7px #131313;
+
 div.opened_frame {
   display: flex;
   position: fixed;
@@ -361,7 +364,7 @@ div.opened_frame {
 }
 iframe#youtube {
   border: 1px solid @dark;
-  box-shadow: 5px 5px 10px #010101;
+  box-shadow: 3px 3px 7px #010101;
   @media (max-width: 580px) {
     & {
       width: 432px;

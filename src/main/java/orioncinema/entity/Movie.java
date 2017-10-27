@@ -21,12 +21,13 @@ public class Movie {
     @Column private String cast;
     @Column private String director;
     @Column private String genre;
-    @Column private int duration;
+    @Column(name = "duration") private int duration;
     @Column private int age;
     @Column private String country;
     @Column private String year;
     @Column(name = "original_title") private String originalTitle;
     @Column(name = "is_high") private boolean isHigh;
+    @Column(name = "kinopoisk_name") private String kinopoiskName;
 
     protected Movie() {}
 
@@ -118,12 +119,12 @@ public class Movie {
         this.genre = genre;
     }
 
-    public int getDureatrion() {
+    public int getDuration() {
         return duration;
     }
 
-    public void setDureatrion(int dureatrion) {
-        this.duration = dureatrion;
+    public void setDuration(int duration) {
+        this.duration = duration;
     }
 
     public int getAge() {
@@ -165,6 +166,15 @@ public class Movie {
     public void setHigh(boolean high) {
         isHigh = high;
     }
+
+    public String getKinopoiskName() {
+        return kinopoiskName;
+    }
+
+    public void setKinopoiskName(String kinopoiskName) {
+        this.kinopoiskName = kinopoiskName;
+    }
+
 
     @Override
     public String toString() {

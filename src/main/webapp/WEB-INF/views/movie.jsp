@@ -43,7 +43,7 @@
                 </tr>
                 <tr>
                     <td>Длительность</td>
-                    <td>${movie.dureatrion} минут</td>
+                    <td>${movie.duration} минут</td>
                 </tr>
                 <tr>
                     <td>В прокате</td>
@@ -54,7 +54,7 @@
         <div class="movie_additional_info">
             <p>${movie.annotation}</p>
             <button class="trailer" id="trailer" onclick="go_trailer()">Смотреть трейлер</button>
-            <button class="kp" onclick="window.open('https://www.kinopoisk.ru/film/oderzhimost-2013-725190/', '_blank')">КиноПоиск</button>
+            <button class="kp" onclick="window.open('https://www.kinopoisk.ru/film/${movie.kinopoiskName}/', '_blank')">КиноПоиск</button>
         </div>
 
     <%--End of the booklet    --%>
