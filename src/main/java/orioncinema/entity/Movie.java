@@ -38,15 +38,6 @@ public class Movie {
         return DateHelper.getNiceDate(endDate);
     }
 
-    @Override
-    public String toString() {
-        return "Movie{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", originalTitle='" + originalTitle + '\'' +
-                '}';
-    }
-
     public long getId() {
         return id;
     }
@@ -173,5 +164,23 @@ public class Movie {
 
     public void setHigh(boolean high) {
         isHigh = high;
+    }
+
+    @Override
+    public String toString() {
+        return "Movie{" +
+                "title='" + title + '\'' +
+                ", annotation='" + annotation + '\'' +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", cast='" + cast + '\'' +
+                ", director='" + director + '\'' +
+                ", genre='" + genre + '\'' +
+                ", duration=" + duration +
+                ", age=" + age +
+                ", country='" + country + '\'' +
+                ", year='" + year + '\'' +
+                ", originalTitle='" + originalTitle + '\'' +
+                '}';
     }
 }

@@ -18,6 +18,11 @@ public class MovieService {
         this.movieDao = movieDao;
     }
 
+    // Movie by placard name
+    public Movie getMovieByName(String name) {
+        return movieDao.getMovieByName(name);
+    }
+
     public List<Movie> getAllMovies() {
         return movieDao.getMovies();
     }

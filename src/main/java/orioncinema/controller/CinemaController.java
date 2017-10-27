@@ -22,8 +22,9 @@ public class CinemaController {
     private MovieService movieService;
     private ScheduleService scheduleService;
 
+    // Main page
     @RequestMapping(method = RequestMethod.GET)
-    public String cinema(
+    public String index(
             Model model,
             @RequestParam(value = "day", required = false) @DateTimeFormat(pattern="yyyy-MM-dd") Date date
     ) {
@@ -31,6 +32,16 @@ public class CinemaController {
         model.addAttribute("days", scheduleService.getDaysSequence());
         model.addAttribute("currentDay", (new SimpleDateFormat("yyyy-MM-dd")).format(date == null ? new Date() : date));
         return "index";
+    }
+
+    // Movie page
+    @RequestMapping(value = "movies/{name}", method = RequestMethod.GET)
+    public String movies(
+            Model model,
+            @PathVariable(value = "name") String name
+    ) {
+        model.addAttribute("movie", movieService.getMovieByName(name));
+        return "movie";
     }
 
     @Autowired
