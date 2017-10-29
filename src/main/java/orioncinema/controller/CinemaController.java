@@ -30,7 +30,7 @@ public class CinemaController {
     ) {
         model.addAttribute("movies", movieService.getAllMovies());
         model.addAttribute("days", scheduleService.getDaysSequence());
-        model.addAttribute("currentDay", (new SimpleDateFormat("yyyy-MM-dd")).format(date == null ? new Date() : date));
+        model.addAttribute("currentDay", date == null ? "2017-10-27" : (new SimpleDateFormat("yyyy-MM-dd")).format(date));
         return "index";
     }
 

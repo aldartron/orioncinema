@@ -52,7 +52,7 @@ public class RootConfig {
         return new HibernateTransactionManager(sessionFactory);
     }
 
-    private Properties getProperties() {
+    public static Properties getProperties() {
         Properties props = new Properties();
         props.put(AvailableSettings.SHOW_SQL, "true");
         props.put(AvailableSettings.HBM2DDL_AUTO, "update");

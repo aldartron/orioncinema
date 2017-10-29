@@ -1,7 +1,9 @@
 package orioncinema.util;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class Day {
@@ -16,6 +18,7 @@ public class Day {
         List<Day> days = new ArrayList<Day>();
         for (int i = 0; i < count; i++) {
             Calendar now = Calendar.getInstance();
+            now.set(2017, Calendar.OCTOBER, 27);
             now.add(Calendar.DATE, i);
             days.add(new Day(now));
         }
@@ -33,7 +36,7 @@ public class Day {
     }
 
     public String getDateLine() {
-        return "" + calendar.get(Calendar.YEAR) + "-" + (calendar.get(Calendar.MONTH) + 1) + "-" + getDay();
+        return new SimpleDateFormat("yyyy-MM-dd").format(calendar.getTime());
     }
 
     public Calendar getCalendar() {
