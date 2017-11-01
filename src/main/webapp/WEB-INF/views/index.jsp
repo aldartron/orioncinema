@@ -4,7 +4,10 @@
 
 <html>
 
-    <jsp:include page="../templates/head.jsp"/>
+<head>
+    <jsp:include page="../templates/head_body.jsp"/>
+    <title>Кинотеатр ОРИОН</title>
+</head>
 
 <body>
     <jsp:include page="../templates/header.jsp"/>

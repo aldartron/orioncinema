@@ -7,9 +7,6 @@
     <groupId>aldartron</groupId>
     <artifactId>orion-cinema</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <modules>
-        <module>orionadmin</module>
-    </modules>
     <packaging>war</packaging>
 
     <properties>

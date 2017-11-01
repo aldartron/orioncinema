@@ -3,6 +3,7 @@ package orioncinema.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import orioncinema.dao.MovieDao;
+import orioncinema.entity.Movie;
 import orioncinema.util.Day;
 
 import java.util.List;

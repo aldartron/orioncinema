@@ -56,11 +56,7 @@ nav {
   }
 
   // Daysbar
-  &.sub_fixed {
-    position: fixed;
-    top: 50px;
-  }
-  &.nav-sticky {
+  &.subheader {
     box-shadow: 2px 2px 7px @dark;
     line-height: 36px;
     background-color: @main;
@@ -86,6 +82,9 @@ nav {
       &.active {
         background-color: @accent;
       }
+    }
+    &#subheader_fixed {
+      position: fixed;
     }
   }
 }
@@ -137,26 +136,11 @@ div.social {
 
 }
 
-nav.sticky1 {
+nav.sticky {
   position: fixed;
-  top: 50px;
   width: 100%;
 }
-nav.sticky2 {
-  position: fixed;
-  top: 100px;
-  width: 100%;
-}
-nav.sticky3 {
-  position: fixed;
-  top: 150px;
-  width: 100%;
-}
-nav.sticky4 {
-  position: fixed;
-  top: 200px;
-  width: 100%;
-}
+
 
 // FACE
 div.face {
@@ -273,6 +257,9 @@ footer {
   nav.nav-fixed {
     position: relative;
   }
+  nav#subheader_fixed {
+    position: relative !important;
+  }
   body {
     padding: 0;
   }
@@ -281,22 +268,24 @@ footer {
 // MOVIE PAGE
 section.movie {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   min-height: 80vh;
 }
 
 div.booklet {
   box-shadow: @soft_shadow;
-  margin: 40px;
+  margin: 60px 40px 10px 40px;
   position: relative;
   color: @white;
   display: flex;
-  justify-content: space-around;
-  align-self: flex-start;
+  justify-content: space-between;
   flex-wrap: wrap;
   min-height: 480px;
   background-color: rgba(33,45,64, 0.25);
   border: 1px solid @dark;
+  width: 1200px;
   img {
     height: 480px;
     //border: 1px solid @dark;
@@ -316,6 +305,26 @@ div.booklet {
   }
   h2 {
     color: @main;
+  }
+}
+
+// MOVIE SCHEDULE
+div.movie_schedule {
+  box-shadow: @soft_shadow;
+  background-color: rgba(33,45,64, 0.25);
+  border: 1px solid @dark;
+  margin: 10px 40px;
+  height: 480px;
+  width: 1200px;
+}
+
+@media (max-width: 1200px) {
+  div.movie_schedule {
+    width: auto;
+  }
+  div.booklet {
+    width: auto;
+    justify-content: space-around;
   }
 }
 
@@ -360,7 +369,7 @@ div.opened_frame {
   width: 100%;
   height: 100%;
   padding-top: 20vh;
-  background-color: rgba(10,9,12, 0.9);
+  background-color: rgba(10,9,12, 0.87);
 }
 iframe#youtube {
   border: 1px solid @dark;
@@ -372,3 +381,4 @@ iframe#youtube {
     }
   }
 }
+

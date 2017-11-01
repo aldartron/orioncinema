@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import orioncinema.entity.Movie;
 import orioncinema.service.MovieService;
 import orioncinema.service.ScheduleService;
 
@@ -30,7 +31,7 @@ public class CinemaController {
     ) {
         model.addAttribute("movies", movieService.getAllMovies());
         model.addAttribute("days", scheduleService.getDaysSequence());
-        model.addAttribute("currentDay", date == null ? "2017-10-27" : (new SimpleDateFormat("yyyy-MM-dd")).format(date));
+        model.addAttribute("currentDay", date == null ? null : (new SimpleDateFormat("yyyy-MM-dd")).format(date));
         return "index";
     }
 
@@ -40,7 +41,9 @@ public class CinemaController {
             Model model,
             @PathVariable(value = "name") String name
     ) {
-        model.addAttribute("movie", movieService.getMovieByName(name));
+        Movie movie = movieService.getMovieByName(name);
+        model.addAttribute("days", scheduleService.getDaysSequence());
+        model.addAttribute("movie", movie);
         return "movie";
     }
 

@@ -1,14 +1,36 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <html>
-<jsp:include page="../templates/head.jsp">
-    <jsp:param name="title" value="${movie.title}"/>
-</jsp:include>
+    <head>
+        <jsp:include page="../templates/head_body.jsp"/>
+        <title>${movie.title}}</title>
+    </head>
 <body>
 
     <jsp:include page="../templates/header.jsp"/>
+    <nav class="subheader" id="subheader_fixed">
+        <div class="">
+            <div class="content">
+                <a class="nav-link" href="<c:url value="/"/>">Сегодня</a>
+            </div>
+        </div>
+        <div class="">
+            <div class="content">
+                <a class="nav-link" href="?day=${days.get(1).getDateLine()}">Завтра</a>
+            </div>
+        </div>
+
+        <c:forEach var="i" begin="2" end="${days.size()-1}">
+            <div class="">
+                <div class="content">
+                    <a class="nav-link" href="?day=${days.get(i).getDateLine()}">${days.get(i).getDayOfWeek()} <sup>${days.get(i).getDay()}</sup></a>
+                </div>
+            </div>
+        </c:forEach>
+    </nav>
 
 <section class="movie">
+
 
     <div class="booklet">
         <img src="<c:url value="/resources/images/movies/posters/${movie.placardName}-poster.jpg"/>">
@@ -60,6 +82,16 @@
     <%--End of the booklet    --%>
     </div>
 
+
+    <div class="movie_schedule">
+        <%--MOVIE SCHEDULE--%>
+
+
+
+        <%--END OF MOVIE SCHEDULE--%>
+    </div>
+
+
 </section>
 
 <jsp:include page="../templates/footer.jsp"/>
@@ -83,6 +115,7 @@
            });
        }
     </script>
+
 
 </body>
 </html>

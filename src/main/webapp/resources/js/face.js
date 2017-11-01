@@ -1,6 +1,6 @@
 window.onload = function() {
 
-    if (document.getElementById("sticky") !== null) {
+    if (document.getElementById("subheader") !== null) {
 
         refreshFaceMargin();
 
@@ -9,26 +9,17 @@ window.onload = function() {
         };
         window.onscroll = function () {
             var headerHeight = document.getElementById("fixed").offsetHeight;
-            var style = "";
             var headerTop = document.getElementById("face").offsetHeight - headerHeight + 50;
 
             var isFixed = window.innerWidth > 580;
 
-            if (headerHeight === 50) {
-                style = "sticky1";
-            } else if (headerHeight === 100) {
-                style = "sticky2";
-            } else if (headerHeight === 150) {
-                style = "sticky3";
-            } else {
-                style = "sticky4";
-            }
-
-            if (window.scrollY >= headerTop + 3 && style !== "" && isFixed) {
-                document.getElementById("sticky").className = style + " nav-sticky";
+            if (window.scrollY >= headerTop + 3 && isFixed) {
+                document.getElementById("subheader").className = "subheader sticky";
+                document.getElementById("subheader").setAttribute("style", "top: " + headerHeight + "px");
                 document.getElementById("face").style.marginBottom = headerHeight + "px";
             } else {
-                document.getElementById("sticky").className = "nav-sticky";
+                document.getElementById("subheader").className = "subheader";
+                document.getElementById("subheader").setAttribute("style", "");
                 document.getElementById("face").style.marginBottom = 0;
             }
         }
