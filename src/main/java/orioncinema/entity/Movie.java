@@ -4,6 +4,8 @@ import orioncinema.util.DateHelper;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "movies")
@@ -28,8 +30,17 @@ public class Movie {
     @Column(name = "original_title") private String originalTitle;
     @Column(name = "is_high") private boolean isHigh;
     @Column(name = "kinopoisk_name") private String kinopoiskName;
+    @OneToMany(mappedBy = "movie", fetch = FetchType.LAZY) private List<Session> sessions = new ArrayList<Session>();
 
     protected Movie() {}
+
+    public List<Session> getSessions() {
+        return sessions;
+    }
+
+    public void setSessions(List<Session> sessions) {
+        this.sessions = sessions;
+    }
 
     public String getNiceStartDate() {
         return DateHelper.getNiceDate(startDate);
