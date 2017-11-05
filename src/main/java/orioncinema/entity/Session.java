@@ -1,7 +1,9 @@
 package orioncinema.entity;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.util.TimeZone;
 
 @Entity
 @Table(name = "sessions")
@@ -28,6 +30,10 @@ public class Session {
         this.id = id;
     }
 
+    public String getNiceTime() {
+        return new SimpleDateFormat("HH:mm").format(datetime);
+    }
+
     public Date getDatetime() {
         return datetime;
     }
@@ -50,5 +56,14 @@ public class Session {
 
     public void setHall(Hall hall) {
         this.hall = hall;
+    }
+
+    @Override
+    public String toString() {
+        return "Session{" +
+                "datetime=" + datetime +
+                ", movie=" + movie.getTitle() +
+                ", hall=" + hall.getName() +
+                '}';
     }
 }

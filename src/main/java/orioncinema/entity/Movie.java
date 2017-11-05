@@ -1,5 +1,6 @@
 package orioncinema.entity;
 
+import org.hibernate.Hibernate;
 import orioncinema.util.DateHelper;
 
 import javax.persistence.*;
@@ -30,7 +31,7 @@ public class Movie {
     @Column(name = "original_title") private String originalTitle;
     @Column(name = "is_high") private boolean isHigh;
     @Column(name = "kinopoisk_name") private String kinopoiskName;
-    @OneToMany(mappedBy = "movie", fetch = FetchType.LAZY) private List<Session> sessions = new ArrayList<Session>();
+    @OneToMany(mappedBy = "movie", fetch = FetchType.EAGER) private List<Session> sessions = new ArrayList<Session>();
 
     protected Movie() {}
 

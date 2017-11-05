@@ -2,12 +2,12 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <html>
     <head>
-        <jsp:include page="../templates/head_body.jsp"/>
+        <jsp:include page="templates/head_body.jsp"/>
         <title>${movie.title}}</title>
     </head>
 <body>
 
-    <jsp:include page="../templates/header.jsp"/>
+    <jsp:include page="templates/header.jsp"/>
     <nav class="subheader" id="subheader_fixed">
         <div class="">
             <div class="content">
@@ -82,19 +82,40 @@
     <%--End of the booklet    --%>
     </div>
 
-
     <div class="movie_schedule">
         <%--MOVIE SCHEDULE--%>
-
-
+        <table>
+            <c:forEach var="days" items="${schedule}">
+                <tr>
+                <td>
+                        ${days.key}
+                </td>
+                <td>
+                    <table>
+                        <c:forEach var="hall" items="${halls}">
+                            <tr>
+                                <td>${hall.name}</td>
+                                <td>
+                                    <c:forEach var="session" items="${days.value}">
+                                        <c:if test="${session.hall.id == hall.id}">
+                                            ${session.niceTime}
+                                        </c:if>
+                                    </c:forEach>
+                                </td>
+                            </tr>
+                        </c:forEach>
+                    </table>
+                </td>
+                </tr>
+            </c:forEach>
+        </table>
 
         <%--END OF MOVIE SCHEDULE--%>
     </div>
 
-
 </section>
 
-<jsp:include page="../templates/footer.jsp"/>
+<jsp:include page="templates/footer.jsp"/>
 
     <%--TRAILER --%>
 

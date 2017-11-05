@@ -16,11 +16,11 @@ public class Day {
         this.calendar = calendar;
     }
 
-    public static List<Day> getDays(int count) {
+    public static List<Day> getDays(Calendar start, int count) {
         List<Day> days = new ArrayList<Day>();
         for (int i = 0; i < count; i++) {
             Calendar now = Calendar.getInstance();
-            now.set(2017, Calendar.OCTOBER, 27);
+            now.setTime(start.getTime());
             now.add(Calendar.DATE, i);
             days.add(new Day(now));
         }

@@ -5,12 +5,12 @@
 <html>
 
 <head>
-    <jsp:include page="../templates/head_body.jsp"/>
+    <jsp:include page="templates/head_body.jsp"/>
     <title>Кинотеатр ОРИОН</title>
 </head>
 
 <body>
-    <jsp:include page="../templates/header.jsp"/>
+    <jsp:include page="templates/header.jsp"/>
 
 <section class="main">
   <div class="face" id="face">
@@ -30,7 +30,7 @@
     </div>
   </div>
 
-    <jsp:include page="../templates/subheader.jsp"/>
+    <jsp:include page="templates/subheader.jsp"/>
 
   <div class="board row justify-content-around" id="board">
     <div class="flex-container col-md-10 col-lg-10 col-sm-12 col-xs-12">
@@ -52,7 +52,7 @@
   </div>
 </section>
 
-    <jsp:include page="../templates/footer.jsp"/>
+    <jsp:include page="templates/footer.jsp"/>
 
 </body>
 </html>

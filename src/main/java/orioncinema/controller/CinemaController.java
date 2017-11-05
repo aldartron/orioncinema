@@ -42,8 +42,10 @@ public class CinemaController {
             @PathVariable(value = "name") String name
     ) {
         Movie movie = movieService.getMovieByName(name);
+        model.addAttribute("halls", scheduleService.getHalls());
         model.addAttribute("days", scheduleService.getDaysSequence());
         model.addAttribute("movie", movie);
+        model.addAttribute("schedule", scheduleService.getScheduleForMovie(movie));
         return "movie";
     }
 
