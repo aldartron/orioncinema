@@ -42,4 +42,8 @@ public class SessionDaoImpl implements SessionDao {
         query.setParameter("datetime", dateFormat.format(date) + "%");
         return query.list();
     }
+
+    public Session getSessionById(long id) {
+        return getSession().get(Session.class, id);
+    }
 }

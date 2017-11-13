@@ -4,6 +4,9 @@
 @white: #EEF0F2;
 @gray: #212D40;
 
+@soft_shadow: 3px 3px 7px #131313;
+@shadow: 5px 5px 7px #121212;
+
 @import url('https://fonts.googleapis.com/css?family=PT+Sans|Poiret+One');
 
 // GLOBAL
@@ -315,14 +318,21 @@ div.movie_schedule {
   box-shadow: @soft_shadow;
   background-color: rgba(33,45,64, 0.25);
   border: 1px solid @dark;
-  margin: 10px 40px;
-  height: 480px;
+  margin: 10px 40px 60px 40px;
   width: 1200px;
 }
 
 @media (max-width: 1200px) {
+  div.wrapper {
+    width: 100%;
+    padding-left: 40px;
+    padding-right: 40px;
+    min-width: 400px;
+  }
   div.movie_schedule {
-    width: auto;
+    position: relative;
+    width: 100%;
+    margin: 10px 0;
   }
   div.booklet {
     width: auto;
@@ -342,6 +352,7 @@ button {
   text-decoration: none;
   display: inline-block;
   font-size: 14px;
+  transition: 0.2s;
   &.trailer {
     border-color: #F71735;
     color: #F71735;
@@ -359,8 +370,6 @@ button {
     }
   }
 }
-
-@soft_shadow: 3px 3px 7px #131313;
 
 div.opened_frame {
   display: flex;

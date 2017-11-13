@@ -11,4 +11,4 @@
     <script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
     <script src="<c:url value="/resources/js/face.js"/>"></script>
     <link rel="stylesheet/less" href="<c:url value="/resources/css/master.less"/>"/>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.7.2/less.min.js"></script>
+

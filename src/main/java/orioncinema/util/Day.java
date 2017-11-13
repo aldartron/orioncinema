@@ -29,6 +29,10 @@ public class Day {
 
     private Calendar calendar;
 
+    public String getNiceDate() {
+        return DateHelper.getNiceDate(calendar.getTime());
+    }
+
     public int getDay() {
         return calendar.get(Calendar.DATE);
     }

@@ -46,4 +46,3 @@ close_frame = function () {
     frame.className = "";
     play.pauseVideo()
 };
-

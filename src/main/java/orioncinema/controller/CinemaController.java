@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import orioncinema.entity.Movie;
 import orioncinema.service.MovieService;
 import orioncinema.service.ScheduleService;
+import orioncinema.util.DateHelper;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -42,10 +43,12 @@ public class CinemaController {
             @PathVariable(value = "name") String name
     ) {
         Movie movie = movieService.getMovieByName(name);
+        model.addAttribute("helper", new DateHelper());
         model.addAttribute("halls", scheduleService.getHalls());
         model.addAttribute("days", scheduleService.getDaysSequence());
         model.addAttribute("movie", movie);
         model.addAttribute("schedule", scheduleService.getScheduleForMovie(movie));
+        model.addAttribute("now", scheduleService.getFakeDate().getTime());
         return "movie";
     }
 

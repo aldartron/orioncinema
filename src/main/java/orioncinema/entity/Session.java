@@ -1,9 +1,10 @@
 package orioncinema.entity;
 
+import orioncinema.util.DateHelper;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.text.SimpleDateFormat;
-import java.util.TimeZone;
 
 @Entity
 @Table(name = "sessions")
@@ -13,6 +14,8 @@ public class Session {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column private long id;
     @Column private Date datetime;
+    @Column(name = "common_cost") private int commonCost;
+    @Column(name = "vip_cost") private int vipCost;
 
     @ManyToOne
     @JoinColumn(name = "movie_id")
@@ -32,6 +35,10 @@ public class Session {
 
     public String getNiceTime() {
         return new SimpleDateFormat("HH:mm").format(datetime);
+    }
+
+    public String getNiceDate() {
+        return DateHelper.getNiceDate(datetime);
     }
 
     public Date getDatetime() {
@@ -56,6 +63,22 @@ public class Session {
 
     public void setHall(Hall hall) {
         this.hall = hall;
+    }
+
+    public int getCommonCost() {
+        return commonCost;
+    }
+
+    public void setCommonCost(int commonCost) {
+        this.commonCost = commonCost;
+    }
+
+    public int getVipCost() {
+        return vipCost;
+    }
+
+    public void setVipCost(int vipCost) {
+        this.vipCost = vipCost;
     }
 
     @Override

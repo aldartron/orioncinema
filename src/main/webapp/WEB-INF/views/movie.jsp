@@ -3,7 +3,10 @@
 <html>
     <head>
         <jsp:include page="templates/head_body.jsp"/>
-        <title>${movie.title}}</title>
+        <link rel="stylesheet/less" href="<c:url value="/resources/css/schedule.less"/>"/>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.7.2/less.min.js"></script>
+
+        <title>${movie.title}</title>
     </head>
 <body>
 
@@ -82,35 +85,49 @@
     <%--End of the booklet    --%>
     </div>
 
+    <div class="wrapper">
     <div class="movie_schedule">
         <%--MOVIE SCHEDULE--%>
-        <table>
+        <div class="schedule">
             <c:forEach var="days" items="${schedule}">
-                <tr>
-                <td>
-                        ${days.key}
-                </td>
-                <td>
-                    <table>
+                <div class="main_line">
+                    <div class="main_line_head">
+                        <h3>${days.key.niceDate}</h3>
+                        <p>${days.key.dayOfWeek}</p>
+                    </div>
+                    <div class="halls">
                         <c:forEach var="hall" items="${halls}">
-                            <tr>
-                                <td>${hall.name}</td>
-                                <td>
+                            <div class="hall_line">
+                                <div class="hall_name">${hall.name}</div>
+                                <div class="sessions">
+                                    <%--<c:if test="${days.key.calendar.time.month == now.month and days.key.calendar.time.day == now.day}">--%>
+                                        <%--<div class="pointer" style="--%>
+                                                <%--left: ${(now.minutes+((now.hours == 0 ? 24 : now.hours)-8)*60-30)/11.4}%;--%>
+                                                <%--"></div>--%>
+                                    <%--</c:if>--%>
                                     <c:forEach var="session" items="${days.value}">
                                         <c:if test="${session.hall.id == hall.id}">
-                                            ${session.niceTime}
+                                            <%--TODO: Manage this shit--%>
+                                            <div class="session ${session.datetime.after(now) ? '' : 'disabled'}" style="
+                                                    width: ${session.movie.duration/11.4}%;
+                                                    left: ${(session.datetime.minutes+((session.datetime.hours == 0 ? 24 : session.datetime.hours)-8)*60-30)/11.4}%;
+                                                    ">
+                                                <a href="<c:url value="/schedule/session/${session.id}"/>">
+                                                    ${session.niceTime}
+                                                </a>
+                                            </div>
                                         </c:if>
                                     </c:forEach>
-                                </td>
-                            </tr>
+                                </div>
+                            </div>
                         </c:forEach>
-                    </table>
-                </td>
-                </tr>
+                    </div>
+                </div>
             </c:forEach>
-        </table>
+        </div>
 
         <%--END OF MOVIE SCHEDULE--%>
+    </div>
     </div>
 
 </section>

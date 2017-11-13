@@ -16,13 +16,12 @@ import java.util.*;
 @Service
 public class ScheduleService {
 
-    private MovieDao movieDao;
     private HallDao hallDao;
     private SessionDao sessionDao;
 
     public Calendar getFakeDate() {
         Calendar now = Calendar.getInstance();
-        now.set(2017, Calendar.OCTOBER, 27);
+        now.set(2017, Calendar.OCTOBER, 27, 20, 0);
         return now;
     }
 
@@ -43,7 +42,9 @@ public class ScheduleService {
         Map<Day, List<Session>> schedule = new LinkedHashMap<Day, List<Session>>();
         List<Day> days = getScheduleDays(movie);
         for (Day day : days) {
-            schedule.put(day, sessionDao.getSessionsByMovieAndDate(movie, day.getCalendar().getTime()));
+            List<Session> sessions = sessionDao.getSessionsByMovieAndDate(movie, day.getCalendar().getTime());
+            if (!sessions.isEmpty())
+                schedule.put(day, sessions);
         }
         return schedule;
     }
@@ -67,11 +68,6 @@ public class ScheduleService {
         }
 
         return Day.getDays(minDay.before(getFakeDate()) ? getFakeDate() : minDay, days.size());
-    }
-
-    @Autowired
-    public void setMovieDao(MovieDao movieDao) {
-        this.movieDao = movieDao;
     }
 
     @Autowired

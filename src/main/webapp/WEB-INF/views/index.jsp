@@ -6,6 +6,8 @@
 
 <head>
     <jsp:include page="templates/head_body.jsp"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.7.2/less.min.js"></script>
+
     <title>Кинотеатр ОРИОН</title>
 </head>
 
