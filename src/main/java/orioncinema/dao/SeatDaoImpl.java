@@ -24,6 +24,18 @@ public class SeatDaoImpl implements  SeatDao {
         return query.list();
     }
 
+    public List<Seat> getBusySeatsBySession(orioncinema.entity.Session session) {
+        Query query = getSession().createQuery(
+                "select ticket.seat from Ticket ticket where ticket.session.id = :sessionId"
+        );
+        query.setParameter("sessionId", session.getId());
+        return query.list();
+    }
+
+    public Seat getSeatById(long seatId) {
+        return getSession().get(Seat.class, seatId);
+    }
+
     @Autowired
     public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;

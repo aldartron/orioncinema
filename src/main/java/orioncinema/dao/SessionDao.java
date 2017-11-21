@@ -14,4 +14,6 @@ public interface SessionDao {
 
     List<Session> getSessionsByMovieAndDate(Movie movie, Date date);
 
+    Session getLastSession();
+
 }

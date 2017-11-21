@@ -46,4 +46,8 @@ public class SessionDaoImpl implements SessionDao {
     public Session getSessionById(long id) {
         return getSession().get(Session.class, id);
     }
+
+    public Session getLastSession() {
+        return (Session) getSession().createQuery("from Session order by dateTime desc").setMaxResults(1).uniqueResult();
+    }
 }

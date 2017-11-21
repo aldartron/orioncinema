@@ -1,13 +1,18 @@
 package orioncinema.service;
 
+import org.joda.time.DateTime;
+import org.joda.time.Days;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import orioncinema.dao.HallDao;
 import orioncinema.dao.MovieDao;
+import orioncinema.dao.SeatDao;
 import orioncinema.dao.SessionDao;
 import orioncinema.entity.Hall;
 import orioncinema.entity.Movie;
+import orioncinema.entity.Seat;
 import orioncinema.entity.Session;
+import orioncinema.util.DateHelper;
 import orioncinema.util.Day;
 
 import java.util.*;
@@ -18,19 +23,13 @@ public class ScheduleService {
 
     private HallDao hallDao;
     private SessionDao sessionDao;
-
-    public Calendar getFakeDate() {
-        Calendar now = Calendar.getInstance();
-        now.set(2017, Calendar.OCTOBER, 27, 20, 0);
-        return now;
-    }
+    private SeatDao seatDao;
+    private MovieService movieService;
 
     // Дни для липучего заголовка
     public List<Day> getDaysSequence() {
-        final int dayCount = 7;
-
-        // fake date
-        return Day.getDays(getFakeDate(), dayCount);
+        int diff = Days.daysBetween(new DateTime(DateHelper.getFakeDate().getTime()), new DateTime(sessionDao.getLastSession().getDatetime())).getDays();
+        return Day.getDays(DateHelper.getFakeDate(), diff+1);
     }
 
     public List<Hall> getHalls() {
@@ -45,6 +44,18 @@ public class ScheduleService {
             List<Session> sessions = sessionDao.getSessionsByMovieAndDate(movie, day.getCalendar().getTime());
             if (!sessions.isEmpty())
                 schedule.put(day, sessions);
+        }
+        return schedule;
+    }
+
+    // Сеансы по фильмам для конкретного дня
+    public Map<Movie, List<Session>> getScheduleForDate(Date date) {
+        Map<Movie, List<Session>> schedule = new LinkedHashMap<Movie, List<Session>>();
+        List<Movie> movies = movieService.getMoviesByDate(date);
+        for (Movie movie : movies) {
+            List<Session> sessions = sessionDao.getSessionsByMovieAndDate(movie, date);
+            if (!sessions.isEmpty())
+                schedule.put(movie, sessions);
         }
         return schedule;
     }
@@ -67,7 +78,11 @@ public class ScheduleService {
                 minDay = day;
         }
 
-        return Day.getDays(minDay.before(getFakeDate()) ? getFakeDate() : minDay, days.size());
+        return Day.getDays(minDay.before(DateHelper.getFakeDate()) ? DateHelper.getFakeDate() : minDay, days.size());
+    }
+
+    public List<Seat> getBusySeatsBySession(Session session) {
+        return seatDao.getBusySeatsBySession(session);
     }
 
     @Autowired
@@ -75,4 +90,14 @@ public class ScheduleService {
 
     @Autowired
     public void setSessionDao(SessionDao sessionDao) {this.sessionDao = sessionDao;}
+
+    @Autowired
+    public void setSeatDao(SeatDao seatDao) {
+        this.seatDao = seatDao;
+    }
+
+    @Autowired
+    public void setMovieService(MovieService movieService) {
+        this.movieService = movieService;
+    }
 }

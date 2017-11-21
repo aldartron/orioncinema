@@ -35,17 +35,17 @@ sub {
 nav {
   width: 100%;
   padding: 0;
-  z-index: 10;
 
   &.nav-fixed {
     display: flex;
     flex-wrap: wrap-reverse;
     text-align: center;
     justify-content: space-between;
-    padding-left: 2%;
+    padding-left: 5%;
     position: fixed;
     top:0;
     background-color: @dark;
+    z-index: 3;
     a {
       padding: 0 16px;
       line-height: 50px;
@@ -67,6 +67,8 @@ nav {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    position: relative;
+    z-index: 2;
     a {
       color: @white;
       &:hover {
@@ -82,61 +84,66 @@ nav {
       & div.content {
         transform: skewX(-15deg);
       }
-      &.active {
-        background-color: @accent;
-      }
     }
-    &#subheader_fixed {
+    &.fixed {
       position: fixed;
     }
   }
 }
 
+
+
+div.active {
+  background-color: @accent;
+}
+
+div#calendar {
+  div.content {
+    min-width: 50px;
+
+    button {
+      margin: 0;
+      padding: 7px;
+      transition: 0.3s;
+      border-radius: 0;
+      border: none;
+      img {
+        height: 24px;
+      }
+      &:hover {
+        background-color: @accent;
+      }
+      &.active {
+        background-color: rgba(10,9,12,0.5);
+      }
+    }
+  }
+}
+
+div#calendar_panel {
+  transform: none;
+  display: none;
+  position: absolute;
+  list-style-type: none;
+  box-shadow: @shadow;
+  padding: 0;
+  &.enabled {
+    display: block;
+  }
+  div.content {
+    padding: 6px;
+    width: 150px;
+    transform: none;
+    background-color: rgba(10,9,12,0.9);
+  }
+}
+
+
+
 div.navigation {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-}
-
-// Social
-div.social {
-  position: relative;
-  width: 320px;
-  height: 36px;
-  margin-top: 7px;
-  margin-bottom: 7px;
-  a {
-    & div {
-      background-size: cover;
-      height: 32px;
-      width: 32px;
-      position: relative;
-    }
-    &#vk div {
-      background-image: url("../images/vk-logo.png");
-      //&:hover {background-image: url("../images/vk-logo-hover.png");}
-    }
-    &#fb div {
-      background-image: url("../images/facebook-logo.png");
-      //&:hover {background-image: url("../images/facebook-logo-hover.png")}
-    }
-    &#ok div {
-      background-image: url("../images/ok-logo.png");
-      //&:hover {background-image: url("../images/ok-logo-hover.png")}
-    }
-    &#tw div {
-      background-image: url("../images/twitter-logo.png");
-      //&:hover {background-image: url("../images/twitter-logo-hover.png")}
-    }
-    &#ig div {
-      background-image: url("../images/instagram-logo.png");
-      //&:hover {background-image: url("../images/instagram-logo-hover.png")}
-    }
-    display: inline-block;
-    margin: 0 4px;
-    padding: 0;
-  }
-
 }
 
 nav.sticky {
@@ -260,7 +267,7 @@ footer {
   nav.nav-fixed {
     position: relative;
   }
-  nav#subheader_fixed {
+  nav.subheader.fixed {
     position: relative !important;
   }
   body {
@@ -307,6 +314,7 @@ div.booklet {
     }
   }
   h2 {
+    font-family: 'Poiret One', cursive;
     color: @main;
     font-size: 1.8em;
     margin: 12px 0 24px 0;

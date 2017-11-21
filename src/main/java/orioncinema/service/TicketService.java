@@ -3,6 +3,7 @@ package orioncinema.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import orioncinema.dao.SeatDao;
+import orioncinema.dao.SessionDao;
 import orioncinema.dao.TicketDao;
 import orioncinema.entity.Seat;
 import orioncinema.entity.Session;
@@ -16,6 +17,7 @@ public class TicketService {
 
     private TicketDao ticketDao;
     private SeatDao seatDao;
+    private SessionDao sessionDao;
 
     public List<List<Ticket>> getTicketGridBySession(Session session) {
         List<List<Ticket>> grid = new ArrayList<List<Ticket>>();
@@ -32,6 +34,11 @@ public class TicketService {
         return grid;
     }
 
+    public void saveTicket(int seatId, int sessionId) {
+        Ticket ticket = new Ticket(sessionDao.getSessionById(sessionId), seatDao.getSeatById(seatId));
+        ticketDao.saveTicket(ticket);
+    }
+
     @Autowired
     public void setTicketDao(TicketDao ticketDao) {
         this.ticketDao = ticketDao;
@@ -41,4 +48,10 @@ public class TicketService {
     public void setSeatDao(SeatDao seatDao) {
         this.seatDao = seatDao;
     }
+
+    @Autowired
+    public void setSessionDao(SessionDao sessionDao) {
+        this.sessionDao = sessionDao;
+    }
+
 }

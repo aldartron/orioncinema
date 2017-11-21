@@ -4,10 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import orioncinema.entity.Movie;
 import orioncinema.service.MovieService;
 import orioncinema.service.ScheduleService;
@@ -30,7 +27,7 @@ public class CinemaController {
             Model model,
             @RequestParam(value = "day", required = false) @DateTimeFormat(pattern="yyyy-MM-dd") Date date
     ) {
-        model.addAttribute("movies", movieService.getAllMovies());
+        model.addAttribute("movies", movieService.getMoviesByDate(date));
         model.addAttribute("days", scheduleService.getDaysSequence());
         model.addAttribute("currentDay", date == null ? null : (new SimpleDateFormat("yyyy-MM-dd")).format(date));
         return "index";
@@ -48,7 +45,7 @@ public class CinemaController {
         model.addAttribute("days", scheduleService.getDaysSequence());
         model.addAttribute("movie", movie);
         model.addAttribute("schedule", scheduleService.getScheduleForMovie(movie));
-        model.addAttribute("now", scheduleService.getFakeDate().getTime());
+        model.addAttribute("now", DateHelper.getFakeDate().getTime());
         return "movie";
     }
 

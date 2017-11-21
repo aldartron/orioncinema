@@ -11,7 +11,7 @@
     <nav class="nav-fixed" id="fixed">
 
         <div class="navigation">
-            <a class="brand" href="<c:url value="/"/>">ОРИОН</a>
+            <a class="brand" href="<c:url value="/"/>">ГЛАВНАЯ</a>
             <a href="#">О КИНОТЕАТРЕ</a>
             <a href="#">СЕАНСЫ</a>
             <a href="#">ГАЛЛЕРЕЯ</a>
@@ -27,5 +27,4 @@
         <%--</div>--%>
 
     </nav>
-
 </header>

@@ -12,40 +12,25 @@
 <body>
 
     <jsp:include page="templates/header.jsp"/>
-    <nav class="subheader" id="subheader_fixed">
-        <div class="">
-            <div class="content">
-                <a class="nav-link" href="<c:url value="/"/>">Сегодня</a>
-            </div>
-        </div>
-        <div class="">
-            <div class="content">
-                <a class="nav-link" href="?day=${days.get(1).getDateLine()}">Завтра</a>
-            </div>
-        </div>
 
-        <c:forEach var="i" begin="2" end="${days.size()-1}">
-            <div class="">
-                <div class="content">
-                    <a class="nav-link" href="?day=${days.get(i).getDateLine()}">${days.get(i).getDayOfWeek()} <sup>${days.get(i).getDay()}</sup></a>
-                </div>
-            </div>
-        </c:forEach>
-    </nav>
+    <c:url value="/schedule/day/" var="day_prefix"/>
+    <jsp:include page="templates/subheader.jsp">
+        <jsp:param name="subclass" value=""/>
+        <jsp:param name="href_prefix" value="${day_prefix}"/>
+    </jsp:include>
 
 <section class="hall" id="hall">
     <div class="session_info">
-        <h4><a href="/movies/${session.movie.placardName}">${session.movie.title}</a></h4>
+        <h4 class="movie_title"><a href="<c:url value="/movies/${session.movie.placardName}"/>">${session.movie.title}</a></h4>
         <h4><a href="/schedule/date/${session.niceDate}">${session.niceDate}</a></h4>
         <h4>${session.niceTime}</h4>
         <h4>${session.movie.age}+</h4>
-        <h4>Выбрано мест: <span id="seat_count">0</span></h4>
-        <h4>Стоимость: <span id="cost">0</span></h4>
     </div>
     <div class="hall_panel hall_${session.hall.id}">
         <div class="screen">
             <h4>Э К Р А Н</h4>
         </div>
+        <div class="table_container hall_${session.hall.id}">
         <table>
 
             <tr><c:forEach var="i" begin="0" end="${session.hall.colNumber}">
@@ -62,7 +47,7 @@
                                     sessionId="${session.id}"
                                     seatId="${ticket.seat.id}"
                                     title="Ряд: ${ticket.seat.row}&#013;Место: ${ticket.seat.col}"
-                                    class="seat ${ticket.seat.vip ? 'vip' : ''}">
+                                    class="seat ${ticket.seat.vip ? 'vip' : ''} ${busySeats.contains(ticket.seat) ? 'busy' : ''}">
                             </button>
                         </td>
                     </c:forEach>
@@ -74,13 +59,27 @@
                 <td class="col_label">${i}</td>
             </c:forEach> </tr>
         </table>
+        </div>
+    </div>
+    <div class="session_info">
+        <c:if test="${not empty session.vipCost}">
+            <h4><button class="seat vip" disabled></button> - ${session.vipCost} &#8381;</h4>
+        </c:if>
+        <c:if test="${not empty session.commonCost}">
+            <h4><button class="seat" disabled></button> - ${session.commonCost} &#8381;</h4>
+        </c:if>
+        <h4><button class="seat busy" disabled></button> - занятые места</h4>
+        <h4><button class="seat checked" disabled></button> - выбранные места</h4>
+        <h4>Выбрано мест: <span id="seat_count">0</span></h4>
+        <h4 class="cost">Стоимость: <span id="cost">0</span></h4>
+    </div>
+    <button class="buy_button" onclick="go()">Приобрести билеты</button>
+    <div class="action_info">
+        <p>После оплаты вы получите уникальный код,<br/>который необходимо ввести в терминале кассы кинотеатра</p>
     </div>
 </section>
 
-</body>
-<script>
-    document.onload = function() {
+    <jsp:include page="templates/footer.jsp"/>
 
-    }
-</script>
+</body>
 </html>

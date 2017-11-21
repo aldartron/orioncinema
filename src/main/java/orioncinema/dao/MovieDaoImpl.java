@@ -7,7 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import orioncinema.entity.Movie;
+import orioncinema.service.ScheduleService;
+import orioncinema.util.DateHelper;
 
+import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 @Transactional
@@ -35,8 +39,15 @@ public class MovieDaoImpl implements MovieDao {
         return (Movie) query.uniqueResult();
     }
 
-    public List<Movie> getMovies() {
-        return getSession().createQuery("from Movie order by startDate desc").list();
+    public List<Movie> getMoviesByDate(Date date) {
+        Query query = getSession().createQuery("from Movie where endDate >= :date and startDate <= :date order by startDate");
+        query.setParameter("date", date);
+        return query.list();
     }
 
+    public List<Movie> getAllMovies() {
+        return getSession()
+                .createQuery("from Movie where endDate > :date order by startDate")
+                .setParameter("date", DateHelper.getFakeDate().getTime()).list();
+    }
 }

@@ -21,8 +21,12 @@ select_seat = function (button) {
             button.classList.remove("checked");
         }
     } else {
-        button.classList.add("checked");
-        selectedButtons.push(button);
+        if (selectedButtons.length === 10) {
+            alert("Вы можете приобрести только до 10 билетов за раз")
+        } else {
+            button.classList.add("checked");
+            selectedButtons.push(button);
+        }
     }
     refreshInfo();
 };
@@ -38,6 +42,31 @@ getSumOfTickets = function () {
         sum += parseInt(selectedButtons[i].getAttribute("price"));
     }
     return sum;
+};
+
+go = function() {
+    if (selectedButtons.length === 0) {
+        alert("Выберите хотя бы одно место")
+    } else {
+        var xhr = new XMLHttpRequest();
+        var arr = [];
+        for (var i in selectedButtons) {
+            arr.push(selectedButtons[i].getAttribute("seatId"));
+        }
+        xhr.open("POST", 'buy', true);
+        xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+        xhr.onreadystatechange = function () {
+
+        };
+        var data = {
+            "seats" : arr,
+            "sessionId" : selectedButtons[0].getAttribute("sessionId")
+        };
+        xhr.send(JSON.stringify(data));
+        xhr.onloadend = function () {
+            alert("Билеты успешно приобретены");
+        }
+    }
 };
 
 

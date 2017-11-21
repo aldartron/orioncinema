@@ -27,6 +27,13 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.8-dmr</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/joda-time/joda-time -->
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+            <version>2.9.9</version>
+        </dependency>
+
 
 
         <!--JAVA SERVLET-->
@@ -50,15 +57,6 @@
             <version>2.3.1</version>
             <scope>provided</scope>
         </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.thymeleaf/thymeleaf-spring4 -->
-        <dependency>
-            <groupId>org.thymeleaf</groupId>
-            <artifactId>thymeleaf-spring4</artifactId>
-            <version>3.0.8.RELEASE</version>
-        </dependency>
-
-
 
         <!--SPRING-->
         <!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
@@ -113,6 +111,14 @@
             <artifactId>hibernate-core</artifactId>
             <version>5.2.12.Final</version>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.9.2</version>
+        </dependency>
+
 
         <!-- TEST -->
         <!-- https://mvnrepository.com/artifact/junit/junit -->

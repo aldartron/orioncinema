@@ -7,14 +7,30 @@
 @soft_shadow: 3px 3px 7px #131313;
 @shadow: 5px 5px 7px #121212;
 
+div.table_container {
+  overflow: auto;
+  position: relative;
+  width: 80vw;
+  max-width: 1020px !important;
+  table {
+    margin: auto;
+    position: relative;
+    padding-bottom: 12px;
+  }
+  &.hall_2 {
+    max-width: 720px !important;
+  }
+}
+
 section.hall {
   display: flex;
   flex-direction: column;
   align-items: center;
   min-height: 80vh;
-  padding-top: 70px;
+  padding-top: 20px;
   position: relative;
   div.hall_panel {
+    box-shadow: @soft_shadow;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -26,6 +42,7 @@ section.hall {
     border-radius: 4px;
     background-color: rgba(10, 9, 12, 0.36);
     div.screen {
+      font-family: 'Poiret One', cursive;
       background-color: rgba(33,45,64, 0.5);
       text-align: center;
       color: @white;
@@ -36,12 +53,22 @@ section.hall {
       border: 1px solid @white;
     }
     &:before {
-      content: "Схема зала";
       font-size: 14px;
       position: absolute;
       top: -11px;
       left: 6%;
     }
+  }
+}
+
+div.hall_panel.hall_1 {
+  &:before {
+    content: "Главный зал";
+  }
+}
+div.hall_panel.hall_2 {
+  &:before {
+    content: "VIP-зал";
   }
 }
 
@@ -59,6 +86,7 @@ h4 {
 }
 
 div.session_info {
+  box-shadow: @soft_shadow;
   color: @white;
   border: 1px solid @dark;
   border-radius: 4px;
@@ -68,18 +96,33 @@ div.session_info {
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-around;
-  padding: 12px;
+  padding: 0;
   background-color: rgba(10, 9, 12, 0.36);
   h4 {
     flex-grow: 2;
     text-align: center;
     font-weight: normal;
+    padding: 14px;
+    line-height: 100%;
     a {
-      color: @main;
+      color: @white;
       transition: 200ms;
       font-weight: bold;
       &:hover {
         color: @main * 2;
+      }
+    }
+    &.cost {
+      min-width: 150px;
+    }
+    &.movie_title {
+      font-size: 22px;
+      font-family: 'Poiret One', cursive;
+      a {
+        color: @main;
+        &:hover {
+          color: @main * 2;
+        }
       }
     }
   }
@@ -107,6 +150,14 @@ button.seat {
   &.checked {
     background-color: @white;
     box-shadow: 0 0 4px @white;
+  }
+  &.busy {
+    background-color: #931F1D;
+    border-color: @dark;
+    &:hover {
+      background-color: #931F1D;
+      box-shadow: none;
+    }
   }
 }
 
@@ -137,4 +188,25 @@ td.col_label {
   font-size: 12px;
   text-align: center;
   &:nth-child(1) {visibility: hidden}
+}
+
+button.buy_button {
+  margin: 32px 24px 0 24px;
+  color: @white;
+  padding: 18px 24px;
+  border-color: @dark;
+  background-color: @main;
+  box-shadow: @soft_shadow;
+  &:hover {
+    background-color: @main * 1.25;
+    color: @white;
+    box-shadow: @shadow;
+  }
+}
+
+div.action_info {
+  margin-top: 16px;
+  margin-bottom: 48px;
+  text-align: center;
+  color: @accent;
 }

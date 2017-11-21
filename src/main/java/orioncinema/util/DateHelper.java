@@ -22,7 +22,13 @@ public class DateHelper {
         // 8:30 - самый ранний сеанс
         // TODO: create table with cinema info and take the first session time from there
         int result = minutes + (hours-8)*60 - 30;
-        return "FUCK";
+        return null;
+    }
+
+    public static Calendar getFakeDate() {
+        Calendar now = Calendar.getInstance();
+        now.set(2017, Calendar.OCTOBER, 27, 20, 0);
+        return now;
     }
 
 }

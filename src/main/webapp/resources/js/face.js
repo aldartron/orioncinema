@@ -1,17 +1,16 @@
 window.onload = function() {
 
-    if (document.getElementById("subheader") !== null) {
+    if (document.getElementById("face") !== null) {
 
         refreshFaceMargin();
+        var headerHeight;
+        var headerTop;
+        var isFixed;
 
-        window.onresize = function () {
-            refreshFaceMargin();
-        };
         window.onscroll = function () {
-            var headerHeight = document.getElementById("fixed").offsetHeight;
-            var headerTop = document.getElementById("face").offsetHeight - headerHeight + 50;
-
-            var isFixed = window.innerWidth > 580;
+            headerHeight = document.getElementById("fixed").offsetHeight;
+            headerTop = document.getElementById("face").offsetHeight - headerHeight + 50;
+            isFixed = window.innerWidth > 580;
 
             if (window.scrollY >= headerTop + 3 && isFixed) {
                 document.getElementById("subheader").className = "subheader sticky";
@@ -24,6 +23,18 @@ window.onload = function() {
             }
         }
     }
+
+    window.onresize = function () {
+        if (document.getElementById("face") !== null)
+            refreshFaceMargin();
+
+        document.getElementById("calendar_panel").setAttribute(
+            "style","left: " + (document.getElementById("calendar_button").getBoundingClientRect().right + 50) + "px; " +
+            "top: " + document.getElementById("subheader").clientHeight +"px"
+        );
+
+    };
+
 };
 
 function refreshFaceMargin() {
@@ -32,17 +43,3 @@ function refreshFaceMargin() {
     if (isFixed)
         document.getElementById("face").style.paddingTop = 8 + headerHeight - 50 + "px";
 }
-
-go_trailer = function () {
-    var frame = document.getElementById("frame");
-    frame.style = "";
-    frame.classList.add("opened_frame");
-    play.playVideo()
-};
-
-close_frame = function () {
-    var frame = document.getElementById("frame");
-    frame.style = "display: none;";
-    frame.className = "";
-    play.pauseVideo()
-};

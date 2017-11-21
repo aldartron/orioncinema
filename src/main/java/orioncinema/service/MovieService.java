@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import orioncinema.dao.MovieDao;
 import orioncinema.entity.Movie;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -23,8 +24,10 @@ public class MovieService {
         return movieDao.getMovieByName(name);
     }
 
-    public List<Movie> getAllMovies() {
-        return movieDao.getMovies();
+    public List<Movie> getMoviesByDate(Date date) {
+        if (date == null) {
+            return movieDao.getAllMovies();
+        } else return movieDao.getMoviesByDate(date);
     }
 
 }

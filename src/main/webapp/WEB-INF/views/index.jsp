@@ -32,7 +32,9 @@
     </div>
   </div>
 
-    <jsp:include page="templates/subheader.jsp"/>
+    <jsp:include page="templates/subheader.jsp">
+        <jsp:param name="href_prefix" value="?day="/>
+    </jsp:include>
 
   <div class="board row justify-content-around" id="board">
     <div class="flex-container col-md-10 col-lg-10 col-sm-12 col-xs-12">
