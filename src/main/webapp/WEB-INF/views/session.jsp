@@ -42,12 +42,12 @@
                     <td class="row_label">${status.count}</td>
                     <c:forEach var="ticket" items="${row}">
                         <td>
-                            <button onclick="select_seat(this)"
-                                    price="${ticket.seat.vip ? ticket.session.vipCost : ticket.session.commonCost}}"
+                            <button <c:if test="${!busySeats.contains(ticket.seat)}"> onclick="select_seat(this)"</c:if>
+                                    price="${ticket.seat.vip ? ticket.session.vipCost : ticket.session.commonCost}"
                                     sessionId="${session.id}"
                                     seatId="${ticket.seat.id}"
                                     title="Ряд: ${ticket.seat.row}&#013;Место: ${ticket.seat.col}"
-                                    class="seat ${ticket.seat.vip ? 'vip' : ''} ${busySeats.contains(ticket.seat) ? 'busy' : ''}">
+                                    class="seat ${ticket.seat.vip && session.vipCost != session.commonCost ? 'vip' : ''} ${busySeats.contains(ticket.seat) ? 'busy' : ''}">
                             </button>
                         </td>
                     </c:forEach>
@@ -82,4 +82,6 @@
     <jsp:include page="templates/footer.jsp"/>
 
 </body>
+
+
 </html>

@@ -27,7 +27,7 @@ public class DateHelper {
 
     public static Calendar getFakeDate() {
         Calendar now = Calendar.getInstance();
-        now.set(2017, Calendar.OCTOBER, 27, 20, 0);
+        now.set(2017, Calendar.OCTOBER, 27, 18, 0);
         return now;
     }
 

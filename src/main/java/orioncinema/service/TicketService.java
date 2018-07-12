@@ -2,6 +2,7 @@ package orioncinema.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import orioncinema.dao.SeatDao;
 import orioncinema.dao.SessionDao;
 import orioncinema.dao.TicketDao;
@@ -9,6 +10,7 @@ import orioncinema.entity.Seat;
 import orioncinema.entity.Session;
 import orioncinema.entity.Ticket;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,9 +36,16 @@ public class TicketService {
         return grid;
     }
 
-    public void saveTicket(int seatId, int sessionId) {
+    private void saveTicket(int seatId, int sessionId) {
         Ticket ticket = new Ticket(sessionDao.getSessionById(sessionId), seatDao.getSeatById(seatId));
         ticketDao.saveTicket(ticket);
+    }
+
+    @Transactional
+    public void buyTickets(int sessionId, int[] seats) {
+        for (int seatId : seats) {
+            saveTicket(seatId, sessionId);
+        }
     }
 
     @Autowired

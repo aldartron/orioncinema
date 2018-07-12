@@ -23,7 +23,7 @@
       <div class="container">
         <h1>О Р И О Н</h1>
         <hr>
-        <h3>ЧОТКИЙ КИНОТЕАТР</h3>
+        <h3>ТВОЙ КИНОТЕАТР</h3>
       </div>
     </div>
     <div class="face-info">

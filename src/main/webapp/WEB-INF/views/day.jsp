@@ -20,7 +20,7 @@
 </jsp:include>
 
 <section>
-    <h1>Расписание на </h1>
+    <h1>Расписание на ${niceDate}</h1>
     <div class="wrapper">
         <div class="movie_schedule">
             <%--MOVIE SCHEDULE--%>
@@ -44,7 +44,7 @@
                                                         ">
                                                     <a href="<c:url value="/schedule/session/${session.id}"/>">
                                                         <p>${session.niceTime}</p>
-                                                        <small>${session.commonCost} - ${session.vipCost} &#8381;</small>
+                                                        <small>${session.commonCost}<c:if test="${session.commonCost != session.vipCost}"> - ${session.vipCost}</c:if> &#8381;</small>
                                                     </a>
                                                 </div>
                                             </c:if>

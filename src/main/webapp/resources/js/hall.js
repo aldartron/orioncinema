@@ -1,5 +1,10 @@
 window.onload = function() {
 
+    document.getElementById("cancel_button")
+        .addEventListener("click",function() {
+           document.getElementById("modal_wrapper").classList.remove("active");
+        });
+
     if (document.getElementById("subheader") !== null) {
 
         refreshFaceMargin();
@@ -69,5 +74,9 @@ go = function() {
     }
 };
 
+show_modal = function () {
+    var wrapper = document.getElementById("modal_wrapper");
+    wrapper.classList.add("active");
+};
 
 

@@ -7,15 +7,19 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import orioncinema.dto.OrderDto;
 import orioncinema.entity.Session;
+import orioncinema.entity.Ticket;
 import orioncinema.service.MovieService;
 import orioncinema.service.ScheduleService;
 import orioncinema.service.SessionService;
 import orioncinema.service.TicketService;
 import orioncinema.util.DateHelper;
 
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
 @Controller
@@ -46,9 +50,9 @@ public class ScheduleController {
             @RequestBody OrderDto dto
     ) {
         int sessionId = dto.getSessionId();
-        for (int seatId : dto.getSeats()) {
-            ticketService.saveTicket(seatId, sessionId);
-        }
+
+        ticketService.buyTickets(sessionId, dto.getSeats());
+
         return "success";
     }
 
@@ -57,6 +61,21 @@ public class ScheduleController {
             Model model,
             @PathVariable(value = "day")  @DateTimeFormat(pattern="yyyy-MM-dd") Date date
     ) {
+        model.addAttribute("date", date);
+        model.addAttribute("niceDate", DateHelper.getNiceDate(date));
+        model.addAttribute("days", scheduleService.getDaysSequence());
+        model.addAttribute("schedule", scheduleService.getScheduleForDate(date));
+        model.addAttribute("currentDay", date == null ? null : (new SimpleDateFormat("yyyy-MM-dd")).format(date));
+        model.addAttribute("halls", scheduleService.getHalls());
+        model.addAttribute("now", DateHelper.getFakeDate().getTime());
+        return "day";
+    }
+
+    @GetMapping(value = "day")
+    public String todaySchedule(
+            Model model
+    ) {
+        Date date = DateHelper.getFakeDate().getTime();
         model.addAttribute("date", date);
         model.addAttribute("niceDate", DateHelper.getNiceDate(date));
         model.addAttribute("days", scheduleService.getDaysSequence());

@@ -49,6 +49,16 @@ public class CinemaController {
         return "movie";
     }
 
+    @GetMapping(value = "about")
+    public String about() {
+        return "about";
+    }
+
+    @GetMapping(value = "contacts")
+    public String contacts() {
+        return "contacts";
+    }
+
     @Autowired
     public void setMovieService(MovieService movieService) {
         this.movieService = movieService;

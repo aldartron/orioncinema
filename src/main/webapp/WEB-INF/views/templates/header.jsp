@@ -12,19 +12,10 @@
 
         <div class="navigation">
             <a class="brand" href="<c:url value="/"/>">ГЛАВНАЯ</a>
-            <a href="#">О КИНОТЕАТРЕ</a>
-            <a href="#">СЕАНСЫ</a>
-            <a href="#">ГАЛЛЕРЕЯ</a>
-            <a href="#">КОНТАКТЫ</a>
+            <a href="<c:url value="/schedule/day/"/>">СЕАНСЫ</a>
+            <a href="<c:url value="/about"/>">О КИНОТЕАТРЕ</a>
+            <a href="<c:url value="/contacts" />">КОНТАКТЫ</a>
         </div>
-
-        <%--<div class="social">--%>
-            <%--<a id="vk" href="#"><div></div></a>--%>
-            <%--<a id="fb" href="#"><div></div></a>--%>
-            <%--<a id="ok" href="#"><div></div></a>--%>
-            <%--<a id="tw" href="#"><div></div></a>--%>
-            <%--<a id="ig" href="#"><div></div></a>--%>
-        <%--</div>--%>
 
     </nav>
 </header>
