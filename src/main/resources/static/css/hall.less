@@ -1,0 +1,239 @@
+@dark: #0A090C; //10 9 12
+@accent: #394F49;
+@main: #65743A;
+@white: #EEF0F2;
+@gray: #212D40;
+
+@soft_shadow: 3px 3px 7px #131313;
+@shadow: 5px 5px 7px #121212;
+
+div.table_container {
+  overflow: auto;
+  position: relative;
+  width: 80vw;
+  max-width: 1020px !important;
+  table {
+    margin: auto;
+    position: relative;
+    padding-bottom: 12px;
+  }
+  &.hall_2 {
+    max-width: 720px !important;
+  }
+}
+
+section.hall {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 80vh;
+  padding-top: 20px;
+  position: relative;
+  div.hall_panel {
+    box-shadow: @soft_shadow;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 30px;
+    padding: 24px;
+    position: relative;
+    color: @white;
+    border: 1px solid @dark;
+    border-radius: 4px;
+    background-color: rgba(10, 9, 12, 0.36);
+    div.screen {
+      font-family: 'Poiret One', cursive;
+      background-color: rgba(33,45,64, 0.5);
+      text-align: center;
+      color: @white;
+      padding: 8px;
+      margin-bottom: 24px;
+      margin-top: 14px;
+      width: 100%;
+      border: 1px solid @white;
+    }
+    &:before {
+      font-size: 14px;
+      position: absolute;
+      top: -11px;
+      left: 6%;
+    }
+  }
+}
+
+div.hall_panel.hall_1 {
+  &:before {
+    content: "Главный зал";
+  }
+}
+div.hall_panel.hall_2 {
+  &:before {
+    content: "VIP-зал";
+  }
+}
+
+@media (max-width: 1000px) {
+  section.hall {
+    div.hall_panel {
+      align-self: flex-start;
+    }
+  }
+}
+
+h4 {
+  padding: 4px;
+  margin: 0;
+}
+
+div.session_info {
+  box-shadow: @soft_shadow;
+  color: @white;
+  border: 1px solid @dark;
+  border-radius: 4px;
+  width: 70%;
+  min-width: 320px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0;
+  background-color: rgba(10, 9, 12, 0.36);
+  h4 {
+    flex-grow: 2;
+    text-align: center;
+    font-weight: normal;
+    padding: 14px;
+    line-height: 100%;
+    a {
+      color: @white;
+      transition: 200ms;
+      font-weight: bold;
+      &:hover {
+        color: @main * 2;
+      }
+    }
+    &.cost {
+      min-width: 150px;
+    }
+    &.movie_title {
+      font-size: 22px;
+      font-family: 'Poiret One', cursive;
+      a {
+        color: @main;
+        &:hover {
+          color: @main * 2;
+        }
+      }
+    }
+  }
+}
+
+button.seat {
+  margin: 1px;
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  background-color: @gray;
+  border: 1px solid @accent;
+  border-radius: 2px;
+  transition: 0.3s;
+  &:hover {
+    background-color: @gray * 2.5;
+    box-shadow: 0 0 3px @white;
+  }
+  &.vip {
+    background-color: @main;
+    &:hover {
+      background-color: @main * 2.2;
+    }
+  }
+  &.checked {
+    background-color: @white;
+    box-shadow: 0 0 4px @white;
+  }
+  &.busy {
+    background-color: #931F1D;
+    border-color: @dark;
+    &:hover {
+      background-color: #931F1D;
+      box-shadow: none;
+    }
+  }
+}
+
+div.hall_1 {
+  tr {
+    &:nth-child(11) {
+      td {
+        padding-bottom: 8px;
+      }
+    }
+  }
+  td {
+    &:nth-child(21) {
+      padding-right: 8px;
+    }
+  }
+}
+td.row_label{
+  color: @white / 1.2;
+  font-size: 12px;
+  padding-left: 4px;
+  padding-right: 4px;
+  &:nth-child(odd) {text-align: right}
+  &:nth-child(even) {text-align: left}
+}
+td.col_label {
+  color: @white;
+  font-size: 12px;
+  text-align: center;
+  &:nth-child(1) {visibility: hidden}
+}
+
+button.buy_button {
+  margin: 32px 24px 0 24px;
+  color: @white;
+  padding: 18px 24px;
+  border-color: @dark;
+  background-color: @main;
+  box-shadow: @soft_shadow;
+  &:hover {
+    background-color: @main * 1.25;
+    color: @white;
+    box-shadow: @shadow;
+  }
+}
+
+div.action_info {
+  margin-top: 16px;
+  margin-bottom: 48px;
+  text-align: center;
+  color: @accent;
+}
+
+div.modal-wrapper {
+  position: fixed;
+  visibility: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: auto;
+  height: auto;
+  background-color: rgba(10,9,12, 0.82);
+  &.active {
+    visibility: visible;
+  }
+}
+form.modal-payment {
+  width: 80%;
+  max-width: 640px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+

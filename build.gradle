@@ -1,0 +1,39 @@
+plugins {
+    id 'org.springframework.boot' version '2.2.4.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+    id 'java'
+}
+
+group = 'com.aldartron'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    compileOnly 'org.projectlombok:lombok'
+    compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.18'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+    compile group: 'javax.servlet', name: 'jstl', version: '1.2'
+    compile group: 'joda-time', name: 'joda-time', version: '2.10.5'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-tomcat', version: '2.2.4.RELEASE'
+    compile group: 'org.apache.tomcat.embed', name: 'tomcat-embed-jasper', version: '9.0.30'
+    compile group: 'org.eclipse.jdt.core.compiler', name: 'ecj', version: '4.6.1'
+}
+
+test {
+    useJUnitPlatform()
+}

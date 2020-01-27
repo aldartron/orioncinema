@@ -1,0 +1,421 @@
+@dark: #0A090C;
+@accent: #394F49;
+@main: #65743A;
+@white: #EEF0F2;
+@gray: #212D40;
+
+@soft_shadow: 3px 3px 7px #131313;
+@shadow: 5px 5px 7px #121212;
+
+@import url('https://fonts.googleapis.com/css?family=PT+Sans|Poiret+One');
+
+// GLOBAL
+
+body {
+  padding: 0;
+  padding-top: 50px;
+  margin: 0;
+  background: url("../images/bg-texture.png") fixed;
+  font-family: 'PT Sans', sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+sup {
+  vertical-align: baseline; position: relative; top: -0.4em;
+}
+
+sub {
+  vertical-align: baseline; position: relative; bottom: -0.4em;
+}
+
+// NAVBARS
+nav {
+  width: 100%;
+  padding: 0;
+
+  &.nav-fixed {
+    display: flex;
+    flex-wrap: wrap-reverse;
+    text-align: center;
+    justify-content: space-between;
+    padding-left: 5%;
+    position: fixed;
+    top:0;
+    background-color: @dark;
+    z-index: 3;
+    a {
+      padding: 0 16px;
+      line-height: 50px;
+      height: 50px;
+      color: @main + #444;
+      &:hover {
+        color: @main + #303030;
+        transition-duration: 0.5s;
+      }
+    }
+  }
+
+  // Daysbar
+  &.subheader {
+    box-shadow: 2px 2px 7px @dark;
+    line-height: 36px;
+    background-color: @main;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 2;
+    a {
+      color: @white;
+      &:hover {
+        color: #fff;
+        transition-duration: 0.5s;
+      }
+    }
+    // Days
+    & div {
+      padding: 0 12px;
+      min-width: 100px;
+      transform: skewX(15deg);
+      & div.content {
+        transform: skewX(-15deg);
+      }
+    }
+    &.fixed {
+      position: fixed;
+    }
+  }
+}
+
+
+
+div.active {
+  background-color: @accent;
+}
+
+div#calendar {
+  div.content {
+    min-width: 50px;
+
+    button {
+      margin: 0;
+      padding: 7px;
+      transition: 0.3s;
+      border-radius: 0;
+      border: none;
+      img {
+        height: 24px;
+      }
+      &:hover {
+        background-color: @accent;
+      }
+      &.active {
+        background-color: rgba(10,9,12,0.5);
+      }
+    }
+  }
+}
+
+div#calendar_panel {
+  transform: none;
+  display: none;
+  position: absolute;
+  list-style-type: none;
+  box-shadow: @shadow;
+  padding: 0;
+  &.enabled {
+    display: block;
+  }
+  div.content {
+    padding: 6px;
+    width: 150px;
+    transform: none;
+    background-color: rgba(10,9,12,0.9);
+  }
+}
+
+
+
+div.navigation {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+nav.sticky {
+  position: fixed;
+  width: 100%;
+}
+
+
+// FACE
+div.face {
+  background: @dark url(../images/face.jpg) fixed center no-repeat;
+  background-size: cover;
+  padding: 8px 0 4px 0;
+  text-align: center;
+  color: @white;
+  h1 {
+    font-family: 'Poiret One', cursive;
+    text-wrap: none;
+    font-size: 80px;
+    margin: 12px;
+  }
+  hr {    width: 33%;  max-width: 640px;  }
+  h3 {    font-size: 24px;  }
+  div.face-brand {
+    padding-top: 8px;
+    padding-bottom: 2px;
+    div.container {
+      background-color: rgba(33,45,64, 0.5);
+      padding: 32px;
+      max-width: 560px;
+      border: 8px double @white;
+    }
+  }
+  div.face-info {
+    &:nth-child(3) {
+      padding-right: 3%;
+      text-align: right;
+    }
+    &:nth-child(1) {
+      padding-left: 3%;
+      text-align: left;
+    }
+    font-family: 'Poiret One', cursive;
+  }
+}
+
+// BOARD
+div.board {
+  padding: 0;
+  margin: 10px 0;
+
+  div.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    div.placard {
+      position: relative;
+      height: 300px;
+      box-shadow: 3px 3px 7px @dark;
+      background-color: @accent;
+      background-position: center;
+      background-size: cover;
+      margin: 10px;
+      min-width: 320px;
+      flex-grow: 1;
+      flex-shrink: 1;
+      flex-basis: 20%;
+      max-width: 800px !important;
+      a {
+        position: absolute;
+        top: 0; bottom: 0; left: 0; right: 0;
+        transition: 0.36s;
+        &:hover {
+          background-color: rgba(10, 9, 12, 0.27);
+          transition: 0.36s;
+        }
+      }
+
+      // PLACARD CAPTION
+      div.caption {
+        position: absolute;
+        bottom: 0;
+        padding: 8px 16px;
+        background-color: rgba(10, 9, 12, 0.75);
+        width: 100%;
+        small {
+          color: @main + #303030;
+          font-size: 16px;
+        }
+        h4 {
+          color: @white;
+          margin: 10px 0 8px 0;
+        }
+      }
+    }
+
+    div.high-prior {
+      max-width: none;
+      flex-basis: 42%;
+      background-position: center;
+      background-size: cover;
+      flex-grow: 1;
+    }
+
+  }
+}
+
+
+// FOOTER
+footer {
+  div.row {    width: 100%;  }
+  font-family: 'Poiret One', cursive;
+  div.col {    margin: 0 !important;  };
+  background-color: @dark;
+  color: @white;
+  padding: 12px;
+}
+
+@media (max-width: 580px) {
+  nav.nav-fixed {
+    position: relative;
+  }
+  nav.subheader.fixed {
+    position: relative !important;
+  }
+  body {
+    padding: 0;
+  }
+}
+
+// MOVIE PAGE
+section.movie {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+}
+
+div.booklet {
+  box-shadow: @soft_shadow;
+  margin: 60px 40px 10px 40px;
+  position: relative;
+  color: @white;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  min-height: 480px;
+  background-color: rgba(33,45,64, 0.25);
+  border: 1px solid @dark;
+  width: 1200px;
+  img {
+    height: 480px;
+    //border: 1px solid @dark;
+  }
+  div {
+    max-width: 420px;
+    padding: 20px;
+    &.movie_info {
+      padding-left: 40px;
+    }
+    &.movie_additional_info {
+      color: @accent + #555;
+    }
+    table {
+      color: @white;
+    }
+  }
+  h2 {
+    font-family: 'Poiret One', cursive;
+    color: @main;
+    font-size: 1.8em;
+    margin: 12px 0 24px 0;
+  }
+}
+
+// MOVIE SCHEDULE
+div.movie_schedule {
+  box-shadow: @soft_shadow;
+  background-color: rgba(33,45,64, 0.25);
+  border: 1px solid @dark;
+  margin: 10px 40px 60px 40px;
+  width: 1200px;
+}
+
+@media (max-width: 1200px) {
+  div.wrapper {
+    width: 100%;
+    padding-left: 40px;
+    padding-right: 40px;
+    min-width: 400px;
+  }
+  div.movie_schedule {
+    position: relative;
+    width: 100%;
+    margin: 10px 0;
+  }
+  div.booklet {
+    width: auto;
+    justify-content: space-around;
+  }
+}
+
+button {
+  background: none;
+  margin-right: 12px;
+  margin-top: 12px;
+  border: 1px solid @main;
+  border-radius: 4px;
+  color: @main;
+  padding: 12px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  transition: 0.2s;
+  &.trailer {
+    border-color: #F71735;
+    color: #F71735;
+    &:hover {
+      background-color: #F71735;
+      color: @white;
+    }
+  }
+  &.kp {
+    border-color: #F46036;
+    color: #F46036;
+    &:hover {
+      background-color: #F46036;
+      color: @white;
+    }
+  }
+}
+
+div.opened_frame {
+  display: flex;
+  position: fixed;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding-top: 20vh;
+  background-color: rgba(10,9,12, 0.87);
+}
+iframe#youtube {
+  border: 1px solid @dark;
+  box-shadow: 3px 3px 7px #010101;
+  @media (max-width: 580px) {
+    & {
+      width: 432px;
+      height: 240px;
+    }
+  }
+}
+
+.about {
+  text-align: center;
+  background-position: center;
+  background-size: cover;
+  background-image: url("../images/cinema.jpg");
+  color: @white;
+  font-size: 1.7em;
+  font-family: 'Poiret One', cursive;
+  position: relative;
+  min-height: 65vh;
+  .slogan {
+    padding: 42px;
+    margin-bottom: 24px;
+    font-size: 2em;
+    color: @main * 1.5;
+  }
+}
+
